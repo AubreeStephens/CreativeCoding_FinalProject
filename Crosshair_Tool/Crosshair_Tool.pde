@@ -7,8 +7,8 @@ click mouse to get x,y location
 
 void setup() {
 
-  size(549, 576);
-  img= loadImage("home_italy.png");
+  size(600, 600);
+  img= loadImage("see_tuscany_10.jpg");
 }
 
 void draw() {
