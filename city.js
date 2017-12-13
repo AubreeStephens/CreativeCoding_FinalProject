@@ -12,22 +12,31 @@ class City{
 	mouseover(px, py){
 		var d= dist( px, py, this.x, this.y);
 		if (d<this.diameter/2){
-			this.diameter++;
-			if (this.diameter>50){
-				this.diameter-=40;
+			this.diameter++;// increment diameter when mouse is in the vicinity
+			this.over = true; 
+			 if (this.diameter>15){
+			this.diameter--; //freeze the circle with Text
 			}
-	}
+     else {
+      this.over = false;
+}
+}
 }
 
 	display(){
+
+//city dot
 	noStroke();
 	fill(this.r, this.g, this.b);
 	ellipse(this.x, this.y, this.diameter, this.diameter);
+//city text
 	 if (this.over) {
       textAlign(CENTER);
-      noStroke();
+      //noStroke();
+      stroke(0);
       fill(0);
-      text(this.name, this.x, this.y + this.diameter/2 + 20);
+      textSize(32);
+      text(this.name, this.x+ this.diameter/2+ 40, this.y - this.diameter/2-0); //text appears slightly above and to right of the dot
     }
   }
 	
