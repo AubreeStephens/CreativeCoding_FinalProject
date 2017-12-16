@@ -11,6 +11,21 @@ var milanY=215;//originally 675
 var milan, cinqueterre,firenze, montepulciano, amalfi;
 var milan1, cinqueterre2, firenze3, montepuliano4, amalfi5;
 var font;
+var milanr= 7; 
+var milang=193;
+var milanb=204;
+var cinqueterrer=81; 
+var cinqueterreg=149;
+var cinqueterreb=153;
+var firenzer=34;
+var firenzeg=255;
+var firenzeb=143;
+var montepulcianor=255;
+var montepulcianog=98;
+var montepulcianob=118;
+var amalfir=204;
+var amalfig=7;
+var amalfib=130;
 
 
 function Intro (){ 
@@ -21,10 +36,10 @@ this.setup= function(){
 //image(this.sceneManager.img,width/2, height/2);
 //image(this.sceneManager.img, width/4, height/4);
 
-milan= new City(milanX,milanY,10,7,193,204, "Milano");// x, y, diameter, r, g, b, s
-cinqueterre= new City(cinqueterreX, cinqueterreY,10,81,149,153, "Cinque Terre");
-firenze= new City(firenzeX, firenzeY,10,34,255,143, "Firenze");
-montepulciano= new City (montepulcianoX, montepulcianoY,10,255,98,118,"Montepulciano");
+milan= new City(milanX,milanY,10,milanr,milang,milanb, "Milano");// x, y, diameter, r, g, b, s
+cinqueterre= new City(cinqueterreX, cinqueterreY,10,cinqueterrer,cinqueterreg,cinqueterreb, "Cinque Terre");
+firenze= new City(firenzeX, firenzeY,10,firenzer,firenzeg,firenzeb, "Firenze");
+montepulciano= new City (montepulcianoX, montepulcianoY,10,montepulcianor,montepulcianog,montepulcianob,"Montepulciano");
 amalfi= new City (amalfiX,amalfiY,10,204,7,130, "Amalfi");
 
 
@@ -99,7 +114,8 @@ function Milan (){
 var me= this;
 
 this.setup=function(){
-  milan1= new Navigate ("Back-[0]", "Home-[0]", "Cinque Terre-[2]");
+ 
+  milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb);// display back and next
   background(0);
 
 }
@@ -134,6 +150,7 @@ function CinqueTerre(){
   var me= this;
 
   this.setup=function(){
+  cinqueterre2= new Navigate ("Milano-[1]", "Map-[0]", "Montepulciano[3]", cinqueterrer, cinqueterreg, cinqueterreb);
   background(0);
 }
   this.draw=function(){
@@ -163,18 +180,22 @@ function CinqueTerre(){
 }
 
 class Navigate {
-constructor (b,h,n){
+constructor (b,h,n,red, green, blue){
  this.back=b;
  this.home=h;
  this.next=n; 
+ this.r=red;
+ this.g=green;
+ this.b=blue;
 }
 navigate(){
 
 textSize(30);
-  fill(0);
+  fill(this.r, this.g, this.b);
+  stroke(this.r, this.g, this.b);
   text (this.back, 50, 750);
-  text (this.home, width/2, 750);
-  text (this.next, width-50, 750);
+  text (this.home, width/2-100, 750);
+  text (this.next, width-200, 750);
 }
   
 }
