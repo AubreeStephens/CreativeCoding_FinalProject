@@ -23,7 +23,8 @@ img2= loadImage('data/see_milano_3.jpg');
 img3= loadImage('data/eat_milano_1.jpg');
 img4= loadImage('data/eat_milano_2.jpg');
 img5=loadImage('data/eat_milano_3.jpg');
-img6= loadImage('data/eat_cinqueterre_2.jpg');
+img6= loadImage('data/see_cinqueterre_2.jpg');
+img7=loadImage('data/eat_cinqueterre_1.jpg')
 }
 
 function setup(){
