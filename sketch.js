@@ -29,6 +29,9 @@ amalfi= new City (amalfiX,amalfiY,10,204,7,130, "Amalfi");
   image(this.sceneManager.img1,width/2,height/2);
   image(img, width/2, height/2);
   //imageMode(CENTER);
+
+siteMap();
+
 }
 
 this.draw= function (){
@@ -38,6 +41,13 @@ this.draw= function (){
 drawIntroScreen();
 
 
+
+}
+
+this.keyPressed= function (){
+  if (key == '1'){
+  this.sceneManager.showScene(Milan);
+  }
 }
 
 
@@ -59,11 +69,65 @@ firenze.mouseover(mouseX,mouseY);
 montepulciano.mouseover(mouseX,mouseY);
 amalfi.mouseover(mouseX,mouseY);
 
- 
+}
 
+}
+
+function siteMap(){
+fill (0);
+textSize (40);
+text("Press the following keys to travel to each city", 50, 75);
+textSize(28);
+text ('[1]- Milano', 175, 125);
+text ('[2]- Cinque Terre', 175, 175);
+text ('[3]- Firenze', 175, 225);
+text ('[4]-Montepulciano',175, 275);
+text ('[5]-Amalfi', 175, 325);
+}
+
+
+function Milan (){
+
+
+var me= this;
+
+this.setup=function(){
+  background(0);
+}
+this.draw=function(){
+
+imageMode(CORNER);
+image(img2, width/2, 0);
+image(img3, 0, 0);
+}
+
+this.keyPressed=function(){
+  if (key==0){
+    this.sceneManager.showScene(Intro);
+//center image on screen again, pop for site map to align to corner
+    push(); 
+    imageMode(CENTER);
+    image(this.sceneManager.img1,width/2,height/2);
+    image(img, width/2, height/2);
+    pop();
+    siteMap();
+
+  }
 }
 }
 
+function Cinque Terre(){
+  var me= this;
+
+  this.setup=function(){
+  background(0);
+
+  this.draw=function(){
+  imageMode(CORNER);
+  image(img6, 0,0);
+  
+  }
+}
 
 
 /*function setup(){

@@ -1,4 +1,4 @@
-var img, img1;
+var img, img1, img2;
 var cnv;
 /*
 var amalfiX= 949;
@@ -19,6 +19,11 @@ function preload(){
 img= loadImage('data/home_italy.png');
 img1=loadImage('data/see_tuscany_10.jpg');
 font=loadFont("data/font1.otf");
+img2= loadImage('data/see_milano_3.jpg');
+img3= loadImage('data/eat_milano_1.jpg');
+img4= loadImage('data/eat_milano_2.jpg');
+img5=loadImage('data/eat_milano_3.jpg');
+img6= loadImage('data/eat_cinqueterre_2.jpg');
 }
 
 function setup(){
@@ -46,6 +51,7 @@ textFont(font);
 var mgr= new SceneManager();
 mgr.img1= img1;
 mgr.img=img;
+//mgr.img= img2;
 mgr.wire();
 mgr.showScene(Intro);
 
