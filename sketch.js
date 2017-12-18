@@ -28,6 +28,7 @@ var amalfig=7;
 var amalfib=130;
 
 // TO DO: ADD TITLES TO CITY PAGES, ADD EAT, SEE, LOVE, INSERT LOVE QUOTE, ADD MORE PICTURES FOR EATING AND SEEING, COMMENT CODE
+//Get multiple images to load: Example 15-4: Image sequence
 
 function Intro (){ 
 
@@ -41,7 +42,7 @@ function Intro (){
     cinqueterre= new City(cinqueterreX, cinqueterreY,10,cinqueterrer,cinqueterreg,cinqueterreb, "Cinque Terre");
     firenze= new City(firenzeX, firenzeY,10,firenzer,firenzeg,firenzeb, "Firenze");
     montepulciano= new City (montepulcianoX, montepulcianoY,10,montepulcianor,montepulcianog,montepulcianob,"Montepulciano");
-    amalfi= new City (amalfiX,amalfiY,10,204,7,130, "Amalfi");
+    amalfi= new City (amalfiX,amalfiY,10,amalfir,amalfig,amalfib, "Amalfi");
 
     imageMode(CENTER);
     image(this.sceneManager.img1,width/2,height/2);
@@ -110,24 +111,58 @@ function siteMap(){
   text ('[3]- Firenze', 175, 225);
   text ('[4]-Montepulciano',175, 275);
   text ('[5]-Amalfi', 175, 325);
+  textAlign(LEFT);
+  textSize(40);
+  text('Eat', width-width/2.5, 200);
+  textSize(50);
+  text('See', width-width/3, 250);
+  textSize(60);
+  text ('Love', width- width/3.5, 300);
+  textSize(70);
+  text ('Italy', width-width/4, 350);
   }
 
 
 function Milan (){
-
+ 
   var me= this;
+  //var maxImages= 5;
+  //var imageIndex= 1;
+  //var images= new Array(maxImages);
+  var headlines= [
+  "'Cara Milano, meeting you was like listening to a song for the first time and knowing it would be my favorite.'"];
+  var x;
+  var index =0;
 
   this.setup=function(){
- 
-    milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb);// display back and next
+
+    x=width;
+    milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb, "Milano");// display back and next
     background(0);
+
+      /*for (var i=1; i<images.length;i++){
+      images[i]= loadImage("data/see_milano_"+i+".jpg");
+      }*/
+  
     }
   this.draw=function(){
-
+    textAlign(LEFT);
     imageMode(CORNER);
-    image(img2, width/2, 0);
+
+    //image(images[imageIndex], width/2, 0);
+    image(img2, width/2,0);
     image(img3, 0, 0);
     milan1.navigate();
+    textSize (50);
+    textStyle(BOLD);
+    fill (milanr,milang,milanb);
+    text (headlines[index], x, height-200);
+    x= x-2;
+
+   /* imageIndex= (imageIndex+1) % images.length;
+    if (imageIndex >=5){
+      imageIndex=1;
+    }*/
     }
 
   this.keyPressed=function(){
@@ -152,16 +187,30 @@ function Milan (){
 
 function CinqueTerre(){
   var me= this;
+  var headlines= [
+  "'Cara Cinque Terre, I have found my perfect one. Let it be you.'"];
+  var x;
+  var index =0;
 
   this.setup=function(){
-    cinqueterre2= new Navigate ("Milano-[1]", "Map-[0]", "Firenze[3]", cinqueterrer, cinqueterreg, cinqueterreb);
+    x=width;
+    cinqueterre2= new Navigate ("Milano-[1]", "Map-[0]", "Firenze[3]", cinqueterrer, cinqueterreg, cinqueterreb, "Cinque Terre");
     background(0);
     }
   this.draw=function(){
+   
     imageMode(CORNER);
     image(img7, 0, 0);//eat
     image(img6, width/2, 0);//see
     cinqueterre2.navigate();
+    
+    //scrolling text
+    textAlign(LEFT);
+    textSize (50);
+    textStyle(BOLD);
+    fill (cinqueterrer,cinqueterreg,cinqueterreb);
+    text (headlines[index], x, height-200);
+    x= x-2;
     }
 
   this.keyPressed=function(){
@@ -186,9 +235,14 @@ function CinqueTerre(){
 
 function Firenze(){
   var me= this;
+  var headlines= [
+  "'Cara Firenze, I have found shelter in you- a warm fulfilling place of rest amidst the storm.'"];
+  var x;
+  var index =0;
 
   this.setup=function(){
-    firenze3= new Navigate ("Cinque Terre-[2]", "Map-[0]", "Montepulciano[4]", firenzer, firenzeg, firenzeb);
+    x=width;
+    firenze3= new Navigate ("Cinque Terre-[2]", "Map-[0]", "Montepulciano[4]", firenzer, firenzeg, firenzeb, "Firenze");
     background(0);
     }
   this.draw=function(){
@@ -196,6 +250,13 @@ function Firenze(){
     image(img9, 0, 0);//eat
     image(img8, width/2, 0); //see
     firenze3.navigate();
+
+    textAlign(LEFT);
+    textSize (50);
+    textStyle(BOLD);
+    fill (firenzer,firenzeg,firenzeb);
+    text (headlines[index], x, height-200);
+    x= x-2;
     }
 
 //0 to home, 2 back to Cinque Terre, 4 Next to montepulciano
@@ -227,8 +288,14 @@ function Firenze(){
 function Montepulciano(){
   var me= this;
 
+  var headlines= [
+  "'Cara Montepulciano, You inspire me to be the higher me. You are my piece of mind.'"];
+  var x;
+  var index =0;
+
   this.setup=function(){
-    montepuliano4= new Navigate ("Firenze-[3]", "Map-[0]", "Amalfi-[5]", montepulcianor, montepulcianog, montepulcianob);
+     x=width;
+    montepuliano4= new Navigate ("Firenze-[3]", "Map-[0]", "Amalfi-[5]", montepulcianor, montepulcianog, montepulcianob, "Montepulciano");
     background(0);
     }
   this.draw=function(){
@@ -236,6 +303,13 @@ function Montepulciano(){
     image(img11, 0, 0);//eat
     image(img10, width/2, 0); //see
     montepuliano4.navigate();
+
+    textAlign(LEFT);
+    textSize (50);
+    textStyle(BOLD);
+    fill (montepulcianor,montepulcianog,montepulcianob);
+    text (headlines[index], x, height-200);
+    x= x-2;
     }
   this.keyPressed=function(){
     if (key=='0'){
@@ -264,9 +338,14 @@ function Montepulciano(){
 
 function Amalfi(){
   var me= this;
+  var headlines= [
+  "'Cara Amalfi, Thank you for being.'"];
+  var x;
+  var index =0;
 
   this.setup=function(){
-    amalfi5= new Navigate ("Montepulciano-[4]", "", "Map[0]", montepulcianor, montepulcianog, montepulcianob);
+     x=width;
+    amalfi5= new Navigate ("Montepulciano-[4]", "", "Map[0]", montepulcianor, montepulcianog, montepulcianob, "Amalfi");
     background(0);}
 
   this.draw=function(){
@@ -274,6 +353,13 @@ function Amalfi(){
     image(img13, 0, 0);//eat
     image(img12, width/2, 0); //see
     amalfi5.navigate();
+
+    textAlign(LEFT);
+    textSize (50);
+    textStyle(BOLD);
+    fill (amalfir, amalfig, amalfib);
+    text (headlines[index], x, height-200);
+    x= x-1;
     }
 
   this.keyPressed=function(){
@@ -299,23 +385,32 @@ function Amalfi(){
 // Lower navigation custom to each screen
 
 class Navigate {
-  constructor (b,h,n,red, green, blue){
+  constructor (b,h,n,red, green, blue, m){
    this.back=b;
    this.home=h;
    this.next=n; 
    this.r=red;
    this.g=green;
    this.b=blue;
+   this.name=m;
 }
 
   navigate(){
-
+    push();
     textSize(30);
+    textAlign(CENTER);
     fill(this.r, this.g, this.b);
     stroke(this.r, this.g, this.b);
-    text (this.back, 50, 750);
-    text (this.home, width/2-100, 750);
-    text (this.next, width-225, 750);
+    text (this.back, 100, 750);
+    text (this.home, width/2, 750);
+    text (this.next, width-100, 750);
+    textSize(42);
+    text (this.name, width/2, 100);
+    textSize(60);
+    text ("Eat", width/4, height/2);
+    text ("See", width- width/4, height/2);
+    pop();
   }
   
 }
+

@@ -1,6 +1,9 @@
 var img, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13;
 var cnv;
 var font;
+var maxImages= 5;
+var imageIndex= 1;
+var images= new Array(maxImages);
 
 function preload(){
 
@@ -17,8 +20,8 @@ img8= loadImage('data/see_firenze_1.jpg');
 img9=loadImage('data/eat_firenze_4.jpg');
 img10=loadImage('data/see_tuscany_5.jpg');
 img11=loadImage('data/eat_tuscany_2.jpg');
-img12=loadImage('data/see_amalfi_4.jpg')
-img13=loadImage('data/eat_amalfi_1.jpg')
+img12=loadImage('data/see_amalfi_4.jpg');
+img13=loadImage('data/eat_amalfi_1.jpg');
 }
 
 function setup(){
@@ -38,6 +41,7 @@ mgr.img=img;
 mgr.wire();
 mgr.showScene(Intro);
 
+//frameRate(5);
 }
 
 
