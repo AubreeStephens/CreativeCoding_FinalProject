@@ -185,13 +185,7 @@ function Milan (){
       this.sceneManager.showScene(Intro);
 
 //center image on screen again, pop for site map to align to corner
-        push(); 
-        imageMode(CENTER);
-        image(this.sceneManager.img1,width/2,height/2);
-        image(img, width/2, height/2);
-        pop();
-        siteMap();
-
+      returnHome();
         }
 
       if (key=='2'){
@@ -227,19 +221,16 @@ function CinqueTerre(){
     scribbles(sourceText2);
     }
 
+//option for Home, Back of Next
   this.keyPressed=function(){
     if (key=='0'){
       this.sceneManager.showScene(Intro);
 //center image on screen again, pop for site map to align to corner
-      push(); 
-      imageMode(CENTER);
-      image(this.sceneManager.img1,width/2,height/2);
-      image(img, width/2, height/2);
-      pop();
-      siteMap();
+      returnHome();
       }
     if (key == '1'){
       this.sceneManager.showScene(Milan);
+      returnScreen(img3, img2);
       }
     if (key=='3'){
       this.sceneManager.showScene(Firenze);
@@ -258,6 +249,7 @@ function Firenze(){
     image(img9, 0, 0);//eat
     image(img8, width/2, 0); //see
     }
+
   this.draw=function(){
 
   
@@ -275,18 +267,12 @@ function Firenze(){
     if (key=='0'){
       this.sceneManager.showScene(Intro);
 //center image on screen again, pop for site map to align to corner
-      push(); 
-      imageMode(CENTER);
-      image(this.sceneManager.img1,width/2,height/2);
-      image(img, width/2, height/2);
-      pop();
-      stroke(0);
-      fill(0);
-      siteMap();
+      returnHome();
 
        }
     if (key=='2'){
       this.sceneManager.showScene(CinqueTerre);
+      returnScreen(img7, img6);
         }
     if (key=='4'){
       this.sceneManager.showScene(Montepulciano);
@@ -318,22 +304,17 @@ function Montepulciano(){
     scribbles(sourceText4);
     }
 
+//0 to Home, 3 to Firenze, 5 to Amalfi
   this.keyPressed=function(){
     if (key=='0'){
       this.sceneManager.showScene(Intro);
 //center image on screen again, pop for site map to align to corner
-      push(); 
-      imageMode(CENTER);
-      image(this.sceneManager.img1,width/2,height/2);
-      image(img, width/2, height/2);
-      pop();
-      stroke(0);
-      fill(0);
-      siteMap();
+      returnHome();
 
       }
     if (key=='3'){
       this.sceneManager.showScene(Firenze);
+      returnScreen(img9, img8);
       }
     if (key=='5'){
       this.sceneManager.showScene(Amalfi);
@@ -370,11 +351,9 @@ function Amalfi(){
     }
 
   this.keyPressed=function(){
-    if (key=='0'){
+    if (key=='0'){      
+      background(0);
       this.sceneManager.showScene(Intro);
-      italy.pause();
-      music.play();
-//center image on screen again, pop for site map to align to corner
       push(); 
       imageMode(CENTER);
       image(this.sceneManager.img1,width/2,height/2);
@@ -383,9 +362,14 @@ function Amalfi(){
       stroke(0);
       fill(0);
       siteMap();
+      italy.pause();
+      music.play();
+
+//center image on screen again, pop for site map to align to corner
      }
     if (key=='4'){
       this.sceneManager.showScene(Montepulciano);
+      returnScreen(img11, img10);
   }
 }
 
@@ -423,7 +407,7 @@ class Navigate {
   
 }
 
-
+//draw note
 function note(){
   push();
   rectMode(CENTER);
@@ -434,6 +418,7 @@ function note(){
   pop();
   fill (204,188,109,50);}
 
+// write text on note
 function write(x){
   //rotate and draw text
   push();
@@ -450,13 +435,15 @@ function write(x){
 
 }
 
+//text and note
 function scribbles (x){
   note();
   write(x);
-  //scribble.setVolume(0.05);
+  //scribble.setVolume(0.05);// any scribble sound I use (from multiple sources) sounds horrible
   //scribble.play();
 }
 
+// reset when returning to intiial screen
 function returnHome(){
       push(); 
       imageMode(CENTER);
@@ -466,5 +453,14 @@ function returnHome(){
       stroke(0);
       fill(0);
       siteMap();
+      italy.pause();
+      music.play();
+    }
+
+function returnScreen(y, z){
+    background(0);
+    imageMode(CORNER);
+    image(y, 0, 0);//eat
+    image(z, width/2, 0);//see
     }
 
