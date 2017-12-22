@@ -1,3 +1,4 @@
+//city coordinates on map
 var amalfiX= 727;//949 originally 
 var amalfiY=504;//986 originally
 var montepulcianoX= 620;// 840 originally
@@ -8,9 +9,12 @@ var cinqueterreX=501;//originally 717
 var cinqueterreY=287;//originally 755
 var milanX=485;//originally 700
 var milanY=215;//originally 675
-var milan, cinqueterre,firenze, montepulciano, amalfi;
-var milan1, cinqueterre2, firenze3, montepuliano4, amalfi5;
-var font;
+
+// variable for objects
+var milan, cinqueterre,firenze, montepulciano, amalfi; //variable for city object
+var milan1, cinqueterre2, firenze3, montepuliano4, amalfi5;// variable for navigate object
+
+//city RGB Colors
 var milanr= 7; 
 var milang=193;
 var milanb=204;
@@ -26,85 +30,86 @@ var montepulcianob=118;
 var amalfir=204;
 var amalfig=7;
 var amalfib=130;
-var maxImages = 5; // Total # of images
-var imageIndex = 1; // Initial image to be displayed is the first*/
 
-// Declaring an array of images.
-var images = new Array(maxImages);
-//var i;
+// text related variables
 var words;
+var font;
+// quote for each city
 var sourceText1= "Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.";
 var sourceText2= "Cara Cinque Terre,\n I have found my perfect one.\n Let it be you.";
 var sourceText3= "Cara Firenze,\n I have found shelter in you-\n a warm fulfilling place of rest\n amidst the storm.";
 var sourceText4= "Cara Montepulciano,\n You inspire me to be the higher me.\n You are my piece of mind.";
 var sourceText5= "Cara Amalfi,\n Thank you for being.";
-// TO DO: ADD TITLES TO CITY PAGES, ADD EAT, SEE, LOVE, INSERT LOVE QUOTE, ADD MORE PICTURES FOR EATING AND SEEING, COMMENT CODE
-//Get multiple images to load: Example 15-4: Image sequence
 
+// REVISION: Add sound clips (background into & Ambient, lots of issues with scribble sound), 
+//            Re-write quotes (accomplished on central "post it"), multiple images (no luck)...
+
+//Opening map of italy
 function Intro (){ 
 
   this.setup= function(){
 
-//image(this.sceneManager.img1,0,0);
-//image(this.sceneManager.img,width/2, height/2);
-//image(this.sceneManager.img, width/4, height/4);
-
+// declaare objects based on ciy class
     milan= new City(milanX,milanY,10,milanr,milang,milanb, "Milano");// x, y, diameter, r, g, b, s
     cinqueterre= new City(cinqueterreX, cinqueterreY,10,cinqueterrer,cinqueterreg,cinqueterreb, "Cinque Terre");
     firenze= new City(firenzeX, firenzeY,10,firenzer,firenzeg,firenzeb, "Firenze");
     montepulciano= new City (montepulcianoX, montepulcianoY,10,montepulcianor,montepulcianog,montepulcianob,"Montepulciano");
     amalfi= new City (amalfiX,amalfiY,10,amalfir,amalfig,amalfib, "Amalfi");
 
+//display background image and map of italy in center
     imageMode(CENTER);
     image(this.sceneManager.img1,width/2,height/2);
     image(img, width/2, height/2);
-    //imageMode(CENTER);
 
+//show site map text & play "Italian Music"
     siteMap();
     music.setVolume(0.1);
     music.play();
 
 }
-
+// Display dots and city names when mousedover
   this.draw= function (){
-  //image(this.sceneManager.img1,width/2,height/2);
-  //image(img, img1.width/2, img1.height/2);
 
     drawIntroScreen();
   }
 
+
+// each key navigates you to a city
   this.keyPressed= function (){
     if (key == '1'){
       this.sceneManager.showScene(Milan);
-      music.pause();
-      italy.setVolume(0.05);
-      italy.play();
+      introSwitch();
     }
     if (key=='2'){
       this.sceneManager.showScene(CinqueTerre);
-      italy.play();
+      introSwitch(); 
     }
     if (key=='3'){
       this.sceneManager.showScene(Firenze);
-      italy.play();
+      introSwitch();
     }
     if (key=='4'){
       this.sceneManager.showScene(Montepulciano);
-      italy.play();
+      introSwitch();
     }
     if (key=='5'){
       this.sceneManager.showScene(Amalfi);
-      italy.play();
+      introSwitch();
     }
 }
 
+//paused intro music and switches over to ambient music 
+function introSwitch(){
+      music.pause();
+      italy.setVolume(0.05);
+      italy.play();
+}
 
+//display each city location and name when moused over. 
 function drawIntroScreen(){
 
   textFont(font);
 
-  //imageMode(CENTER);
-  //image(img, img1.width/2, img1.height/2); // ISSUE: When cities expand on mouseover, they go BEHIND this image. If I put the image in setup, it doesnt redraw...
   milan.display();
   cinqueterre.display();
   firenze.display();
@@ -121,6 +126,7 @@ function drawIntroScreen(){
 
 }
 
+//display sitemap on intro screen
 function siteMap(){
   fill (0);
   textSize (40);
@@ -149,7 +155,7 @@ function Milan (){
 
   var me= this;
 
-
+//display title, two images and initialize navigation object
   this.setup=function(){
 
     milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb, "Milano");// display back and next
@@ -158,6 +164,8 @@ function Milan (){
     image(img3, 0, 0);
     image(img2, width/2,0);
     }
+
+//draw navigation text and post card in center with quote
   this.draw=function(){
    
     push();
@@ -167,10 +175,11 @@ function Milan (){
     milan1.navigate();
     pop();
 
-    setTimeout(scribbles(sourceText1),6000);
+    scribbles(sourceText1);
  
     }
 
+// key press either home or to the next city
   this.keyPressed=function(){
     if (key==0){
       this.sceneManager.showScene(Intro);
@@ -192,6 +201,7 @@ function Milan (){
   
 
 }
+
 
 function CinqueTerre(){
   var me= this;
@@ -446,3 +456,15 @@ function scribbles (x){
   //scribble.setVolume(0.05);
   //scribble.play();
 }
+
+function returnHome(){
+      push(); 
+      imageMode(CENTER);
+      image(this.sceneManager.img1,width/2,height/2);
+      image(img, width/2, height/2);
+      pop();
+      stroke(0);
+      fill(0);
+      siteMap();
+    }
+
