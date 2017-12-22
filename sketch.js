@@ -26,6 +26,15 @@ var montepulcianob=118;
 var amalfir=204;
 var amalfig=7;
 var amalfib=130;
+var maxImages = 5; // Total # of images
+var imageIndex = 1; // Initial image to be displayed is the first*/
+
+// Declaring an array of images.
+var images = new Array(maxImages);
+//var i;
+var words;
+var milanquote= 'Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.';
+
 
 // TO DO: ADD TITLES TO CITY PAGES, ADD EAT, SEE, LOVE, INSERT LOVE QUOTE, ADD MORE PICTURES FOR EATING AND SEEING, COMMENT CODE
 //Get multiple images to load: Example 15-4: Image sequence
@@ -111,6 +120,7 @@ function siteMap(){
   text ('[3]- Firenze', 175, 225);
   text ('[4]-Montepulciano',175, 275);
   text ('[5]-Amalfi', 175, 325);
+
   textAlign(LEFT);
   textSize(40);
   text('Eat', width-width/2.5, 200);
@@ -125,42 +135,51 @@ function siteMap(){
 
 function Milan (){
  
+
   var me= this;
   //var maxImages= 5;
   //var imageIndex= 1;
   //var images= new Array(maxImages);
   var headlines= [
   "'Cara Milano, meeting you was like listening to a song for the first time and knowing it would be my favorite.'"];
-  var x;
+  //var x;
   var index =0;
 
   this.setup=function(){
 
-    x=width;
+   // x=width;
     milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb, "Milano");// display back and next
     background(0);
-
-      /*for (var i=1; i<images.length;i++){
-      images[i]= loadImage("data/see_milano_"+i+".jpg");
-      }*/
+    imageMode(CORNER);
+    image(img3, 0, 0);
+    image(img2, width/2,0);
   
     }
   this.draw=function(){
-    textAlign(LEFT);
-    imageMode(CORNER);
-
-    //image(images[imageIndex], width/2, 0);
-    image(img2, width/2,0);
-    image(img3, 0, 0);
-    milan1.navigate();
+    //textAlign(LEFT);
+    //imageMode(CORNER);
+    //image(img2, width/2,0);
+    //image(img3, 0, 0);
+    push();
+    fill (milanr,milang,milanb);
     textSize (50);
     textStyle(BOLD);
-    fill (milanr,milang,milanb);
-    text (headlines[index], x, height-200);
-    x= x-2;
+    milan1.navigate();
+    pop();
+    //textSize (50);
+    //textStyle(BOLD);
+    //fill (milanr,milang,milanb);
+    //text (headlines[index], x, height-200);
+    //x= x-2;
 
-   /* imageIndex= (imageIndex+1) % images.length;
-    if (imageIndex >=5){
+    setTimeout(write, 5000);
+
+    
+
+    //set.timeout(image(img4, width/2, 0));
+
+    /*imageIndex= (imageIndex+1) % images.length;
+    if (imageIndex >5){
       imageIndex=1;
     }*/
     }
@@ -183,6 +202,8 @@ function Milan (){
         this.sceneManager.showScene(CinqueTerre);
         }
   }
+  
+
 }
 
 function CinqueTerre(){
@@ -414,3 +435,31 @@ class Navigate {
   
 }
 
+function drawNew(i){
+image(i, width/2, 0);
+}
+
+function write(){
+  var sourceText = "Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.";
+  push();
+  rectMode(CENTER);
+  translate(width/2, 450);
+  rotate(60*Math.PI/180);
+  rect(0, 0, 300, 400);
+  //tint(255,127);
+  pop();
+  fill (204,188,109,50);
+
+//rotate and draw text
+  push();
+  translate(width/2, 450);
+  rotate(330*Math.PI/180);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  var middle= sourceText.length/2;
+  var left= middle- ((mouseX/(width/2))*middle);
+  var right= middle + ((mouseX/(width/2)) *middle);
+  fill(0);
+  text(sourceText.substring (left, right+1),0, 0);
+  pop();
+}

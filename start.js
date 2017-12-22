@@ -1,9 +1,15 @@
 var img, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13;
 var cnv;
 var font;
-var maxImages= 5;
-var imageIndex= 1;
-var images= new Array(maxImages);
+//var maxImages= 5;
+//var imageIndex= 1;
+//var images= new Array(maxImages);
+
+//var maxImages = 5; // Total # of images
+//var imageIndex = 1; // Initial image to be displayed is the first
+
+// Declaring an array of images.
+//var images = new Array(maxImages); 
 
 function preload(){
 
@@ -22,6 +28,9 @@ img10=loadImage('data/see_tuscany_5.jpg');
 img11=loadImage('data/eat_tuscany_2.jpg');
 img12=loadImage('data/see_amalfi_4.jpg');
 img13=loadImage('data/eat_amalfi_1.jpg');
+  //for (var i = 1; i < images.length; i ++ ) {
+    //images[i] = loadImage('data/see_milano_' + i + '.jpg');
+  //}
 }
 
 function setup(){
