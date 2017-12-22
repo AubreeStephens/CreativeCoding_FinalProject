@@ -33,9 +33,11 @@ var imageIndex = 1; // Initial image to be displayed is the first*/
 var images = new Array(maxImages);
 //var i;
 var words;
-var milanquote= 'Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.';
-
-
+var sourceText1= "Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.";
+var sourceText2= "Cara Cinque Terre,\n I have found my perfect one.\n Let it be you.";
+var sourceText3= "Cara Firenze,\n I have found shelter in you-\n a warm fulfilling place of rest\n amidst the storm.";
+var sourceText4= "Cara Montepulciano,\n You inspire me to be the higher me.\n You are my piece of mind.";
+var sourceText5= "Cara Amalfi,\n Thank you for being.";
 // TO DO: ADD TITLES TO CITY PAGES, ADD EAT, SEE, LOVE, INSERT LOVE QUOTE, ADD MORE PICTURES FOR EATING AND SEEING, COMMENT CODE
 //Get multiple images to load: Example 15-4: Image sequence
 
@@ -59,6 +61,8 @@ function Intro (){
     //imageMode(CENTER);
 
     siteMap();
+    music.setVolume(0.1);
+    music.play();
 
 }
 
@@ -72,18 +76,25 @@ function Intro (){
   this.keyPressed= function (){
     if (key == '1'){
       this.sceneManager.showScene(Milan);
+      music.pause();
+      italy.setVolume(0.05);
+      italy.play();
     }
     if (key=='2'){
       this.sceneManager.showScene(CinqueTerre);
+      italy.play();
     }
     if (key=='3'){
       this.sceneManager.showScene(Firenze);
+      italy.play();
     }
     if (key=='4'){
       this.sceneManager.showScene(Montepulciano);
+      italy.play();
     }
     if (key=='5'){
       this.sceneManager.showScene(Amalfi);
+      italy.play();
     }
 }
 
@@ -137,51 +148,27 @@ function Milan (){
  
 
   var me= this;
-  //var maxImages= 5;
-  //var imageIndex= 1;
-  //var images= new Array(maxImages);
-  var headlines= [
-  "'Cara Milano, meeting you was like listening to a song for the first time and knowing it would be my favorite.'"];
-  //var x;
-  var index =0;
+
 
   this.setup=function(){
 
-   // x=width;
     milan1= new Navigate ("Map-[0]", "", "Cinque Terre-[2]", milanr, milang, milanb, "Milano");// display back and next
     background(0);
     imageMode(CORNER);
     image(img3, 0, 0);
     image(img2, width/2,0);
-  
     }
   this.draw=function(){
-    //textAlign(LEFT);
-    //imageMode(CORNER);
-    //image(img2, width/2,0);
-    //image(img3, 0, 0);
+   
     push();
     fill (milanr,milang,milanb);
     textSize (50);
     textStyle(BOLD);
     milan1.navigate();
     pop();
-    //textSize (50);
-    //textStyle(BOLD);
-    //fill (milanr,milang,milanb);
-    //text (headlines[index], x, height-200);
-    //x= x-2;
 
-    setTimeout(write, 5000);
-
-    
-
-    //set.timeout(image(img4, width/2, 0));
-
-    /*imageIndex= (imageIndex+1) % images.length;
-    if (imageIndex >5){
-      imageIndex=1;
-    }*/
+    setTimeout(scribbles(sourceText1),6000);
+ 
     }
 
   this.keyPressed=function(){
@@ -208,30 +195,26 @@ function Milan (){
 
 function CinqueTerre(){
   var me= this;
-  var headlines= [
-  "'Cara Cinque Terre, I have found my perfect one. Let it be you.'"];
-  var x;
-  var index =0;
+
 
   this.setup=function(){
-    x=width;
+
     cinqueterre2= new Navigate ("Milano-[1]", "Map-[0]", "Firenze[3]", cinqueterrer, cinqueterreg, cinqueterreb, "Cinque Terre");
     background(0);
-    }
-  this.draw=function(){
-   
     imageMode(CORNER);
     image(img7, 0, 0);//eat
     image(img6, width/2, 0);//see
-    cinqueterre2.navigate();
+    }
+  this.draw=function(){
+   
     
-    //scrolling text
-    textAlign(LEFT);
+    push();
+    fill (cinqueterrer,cinqueterreg,cinqueterreb);
     textSize (50);
     textStyle(BOLD);
-    fill (cinqueterrer,cinqueterreg,cinqueterreb);
-    text (headlines[index], x, height-200);
-    x= x-2;
+    cinqueterre2.navigate();
+    pop();
+    scribbles(sourceText2);
     }
 
   this.keyPressed=function(){
@@ -256,28 +239,25 @@ function CinqueTerre(){
 
 function Firenze(){
   var me= this;
-  var headlines= [
-  "'Cara Firenze, I have found shelter in you- a warm fulfilling place of rest amidst the storm.'"];
-  var x;
-  var index =0;
 
   this.setup=function(){
-    x=width;
+
     firenze3= new Navigate ("Cinque Terre-[2]", "Map-[0]", "Montepulciano[4]", firenzer, firenzeg, firenzeb, "Firenze");
     background(0);
-    }
-  this.draw=function(){
     imageMode(CORNER);
     image(img9, 0, 0);//eat
     image(img8, width/2, 0); //see
-    firenze3.navigate();
+    }
+  this.draw=function(){
 
-    textAlign(LEFT);
+  
+    push();
+    fill (firenzer,firenzeg,firenzeb);
     textSize (50);
     textStyle(BOLD);
-    fill (firenzer,firenzeg,firenzeb);
-    text (headlines[index], x, height-200);
-    x= x-2;
+    firenze3.navigate();
+    pop();
+    scribbles(sourceText3);
     }
 
 //0 to home, 2 back to Cinque Terre, 4 Next to montepulciano
@@ -309,29 +289,25 @@ function Firenze(){
 function Montepulciano(){
   var me= this;
 
-  var headlines= [
-  "'Cara Montepulciano, You inspire me to be the higher me. You are my piece of mind.'"];
-  var x;
-  var index =0;
-
   this.setup=function(){
-     x=width;
+
     montepuliano4= new Navigate ("Firenze-[3]", "Map-[0]", "Amalfi-[5]", montepulcianor, montepulcianog, montepulcianob, "Montepulciano");
     background(0);
-    }
-  this.draw=function(){
     imageMode(CORNER);
     image(img11, 0, 0);//eat
     image(img10, width/2, 0); //see
-    montepuliano4.navigate();
+    }
+  this.draw=function(){
 
-    textAlign(LEFT);
+    push();
+    fill (montepulcianor,montepulcianog,montepulcianob);
     textSize (50);
     textStyle(BOLD);
-    fill (montepulcianor,montepulcianog,montepulcianob);
-    text (headlines[index], x, height-200);
-    x= x-2;
+    montepuliano4.navigate();
+    pop();
+    scribbles(sourceText4);
     }
+
   this.keyPressed=function(){
     if (key=='0'){
       this.sceneManager.showScene(Intro);
@@ -359,33 +335,35 @@ function Montepulciano(){
 
 function Amalfi(){
   var me= this;
-  var headlines= [
-  "'Cara Amalfi, Thank you for being.'"];
-  var x;
-  var index =0;
 
   this.setup=function(){
-     x=width;
-    amalfi5= new Navigate ("Montepulciano-[4]", "", "Map[0]", montepulcianor, montepulcianog, montepulcianob, "Amalfi");
-    background(0);}
 
-  this.draw=function(){
+    amalfi5= new Navigate ("Montepulciano-[4]", "", "Map[0]", montepulcianor, montepulcianog, montepulcianob, "Amalfi");
+    background(0);
     imageMode(CORNER);
     image(img13, 0, 0);//eat
     image(img12, width/2, 0); //see
+
+  }
+
+  this.draw=function(){
+
     amalfi5.navigate();
 
-    textAlign(LEFT);
+    push();
+    fill (amalfir,amalfig,amalfib);
     textSize (50);
     textStyle(BOLD);
-    fill (amalfir, amalfig, amalfib);
-    text (headlines[index], x, height-200);
-    x= x-1;
+    amalfi5.navigate();
+    pop();
+    scribbles(sourceText5);
     }
 
   this.keyPressed=function(){
     if (key=='0'){
       this.sceneManager.showScene(Intro);
+      italy.pause();
+      music.play();
 //center image on screen again, pop for site map to align to corner
       push(); 
       imageMode(CENTER);
@@ -435,12 +413,8 @@ class Navigate {
   
 }
 
-function drawNew(i){
-image(i, width/2, 0);
-}
 
-function write(){
-  var sourceText = "Cara Milano,\n meeting you was like\n listening to a song\n for the first time\n and knowing it would be my favorite.";
+function note(){
   push();
   rectMode(CENTER);
   translate(width/2, 450);
@@ -448,18 +422,27 @@ function write(){
   rect(0, 0, 300, 400);
   //tint(255,127);
   pop();
-  fill (204,188,109,50);
+  fill (204,188,109,50);}
 
-//rotate and draw text
+function write(x){
+  //rotate and draw text
   push();
   translate(width/2, 450);
   rotate(330*Math.PI/180);
   textSize(30);
   textAlign(CENTER, CENTER);
-  var middle= sourceText.length/2;
+  var middle= x.length/2;
   var left= middle- ((mouseX/(width/2))*middle);
   var right= middle + ((mouseX/(width/2)) *middle);
   fill(0);
-  text(sourceText.substring (left, right+1),0, 0);
+  text(x.substring (left, right+1),0, 0);
   pop();
+
+}
+
+function scribbles (x){
+  note();
+  write(x);
+  //scribble.setVolume(0.05);
+  //scribble.play();
 }

@@ -1,6 +1,9 @@
 var img, img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13;
 var cnv;
 var font;
+var scribble;
+var italy;
+var music;
 //var maxImages= 5;
 //var imageIndex= 1;
 //var images= new Array(maxImages);
@@ -31,6 +34,10 @@ img13=loadImage('data/eat_amalfi_1.jpg');
   //for (var i = 1; i < images.length; i ++ ) {
     //images[i] = loadImage('data/see_milano_' + i + '.jpg');
   //}
+soundFormats('mp3', 'ogg', 'wav');
+scribble=loadSound('data/scribble_4.wav');
+italy=loadSound('data/italy.wav');
+music=loadSound('data/music.ogg');
 }
 
 function setup(){
